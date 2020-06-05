@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- Enable us to reference View class directly  -->
+        <import type="android.view.View" />
+        <variable
+            name="refernce"
+            type="eng.abeerali.it.roomnotepad.data_binding.UserModel" />
+
+        <variable
+            name="clickHandler"
+            type="eng.abeerali.it.roomnotepad.data_binding.DataBindingMain.ClickHandler" />
+    </data>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".data_binding.DataBindingMain">
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="16dp"
+        android:scaleType="fitXY"
+        tools:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_toRightOf="@id/image_view"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Rohit Kumar" />
+
+        <TextView
+            android:id="@+id/age_text"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="@{String.valueOf(refernce.age)}"
+            tools:text="28" />
+
+        <TextView
+            android:id="@+id/hobbies_text"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:text="@{refernce.hobbies.size() > 0? refernce.hobbies[0]: @string/no_hobbies}"
+            tools:text="Playing Cricket" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_view"
+        android:layout_marginTop="16dp"
+        android:onClick="@{(view)->clickHandler.handleClick()}"
+        android:visibility="@{refernce.age > 10? View.VISIBLE: View.GONE}"
+        android:text="SUBMIT" />
+
+</RelativeLayout>
+
+</layout>
