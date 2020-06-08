@@ -2,6 +2,7 @@ package eng.abeerali.it.roomnotepad;
 
 import androidx.appcompat.app.AppCompatActivity;
 import eng.abeerali.it.roomnotepad.data_binding.DataBindingMain;
+import eng.abeerali.it.roomnotepad.live_data.LiveDataEx;
 import eng.abeerali.it.roomnotepad.room_package.HomeActivity;
 import eng.abeerali.it.roomnotepad.room_package.MainActivity;
 
@@ -12,7 +13,7 @@ import android.widget.Button;
 
 public class MainPage extends AppCompatActivity {
 
-    private Button room, dBinding;
+    private Button room, dBinding, liveData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class MainPage extends AppCompatActivity {
 
         room = findViewById(R.id.main_room);
         dBinding = findViewById(R.id.main_data_binding);
+        liveData = findViewById(R.id.main_motion_layout);
 
         room.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,15 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainPage.this, DataBindingMain.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+
+        liveData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainPage.this, LiveDataEx.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
